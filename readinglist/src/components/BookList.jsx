@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { BookContext } from "../context/BookContext";
+import "./booklist.css";
+import BookDetails from "./BookDetails";
 const BookList = () => {
   const style = {
     borderRadius: "10px",
     listStyleType: "circle",
   };
-  const { books } = useContext(BookContext);
+  const { books, removeBook } = useContext(BookContext);
   return books.length ? (
     <div className="container">
       <div className="row">
@@ -15,17 +17,18 @@ const BookList = () => {
               <span className="center card-title">
                 <h3>Library</h3>
               </span>
-              <p style={style} className="teal darken-3 white-text">
-                <ul>
-                  {books.map((book) => {
-                    return (
-                      <li style={style} className="container">
-                        {book.title}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </p>
+
+              <ul style={style} className="teal darken-3 white-text">
+                {books.map((book) => {
+                  return (
+                    <BookDetails
+                      key={book.id}
+                      book={book}
+                      removeBook={removeBook}
+                    ></BookDetails>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
