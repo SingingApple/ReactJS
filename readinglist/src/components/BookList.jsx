@@ -7,7 +7,7 @@ const BookList = () => {
     borderRadius: "10px",
     listStyleType: "circle",
   };
-  const { books, removeBook } = useContext(BookContext);
+  const { books, dispatch } = useContext(BookContext);
   return books.length ? (
     <div className="container">
       <div className="row">
@@ -20,13 +20,7 @@ const BookList = () => {
 
               <ul style={style} className="teal darken-3 white-text">
                 {books.map((book) => {
-                  return (
-                    <BookDetails
-                      key={book.id}
-                      book={book}
-                      removeBook={removeBook}
-                    ></BookDetails>
-                  );
+                  return <BookDetails key={book.id} book={book}></BookDetails>;
                 })}
               </ul>
             </div>

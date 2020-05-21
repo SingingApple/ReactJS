@@ -12,13 +12,19 @@ const BookForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && author) {
-      addBook(title, author);
+      dispatch({
+        type: "ADD_BOOK",
+        book: {
+          title,
+          author,
+        },
+      });
     }
     setTitle("");
     setAuthor("");
     document.querySelector("form").reset();
   };
-  const { addBook } = useContext(BookContext);
+  const { dispatch } = useContext(BookContext);
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-field">
